@@ -11,7 +11,7 @@ export const s3 = new AWS.S3({
   signatureVersion: 'v4',
   region: c.aws_reigion,
   params: {Bucket: c.aws_media_bucket}
-});
+}); 
 
 
 /* getGetSignedUrl generates an aws signed url to retreive an item
