@@ -10,14 +10,23 @@ Step 1: Pull the images above from dockerhub
 
 Step 2: Setup the following local environment variables. 
 I am using a AWS RDS postgres database and an AWS S3 bucket in the us-west-2 region.
+
 `export POSTGRESS_USERNAME
+
 export POSTGRESS_PASSWORD
+
 export POSTGRESS_DB
+
 export POSTGRESS_HOST
+
 export AWS_BUCKET
+
 export AWS_PROFILE
+
 export AWS_REGION
+
 export JWT_SECRET
+
 export URL
 `
 
