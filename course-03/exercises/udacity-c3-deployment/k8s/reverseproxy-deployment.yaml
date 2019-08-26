@@ -12,7 +12,7 @@ spec:
         service: reverseproxy
     spec:
       containers:
-      - image: scheele/reverseproxy
+      - image: ssingamneni/udagram-reverseproxy:prod
         name: reverseproxy
         imagePullPolicy: Always          
         resources:
