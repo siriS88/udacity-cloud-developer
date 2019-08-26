@@ -30,11 +30,11 @@ export JWT_SECRET
 export URL
 ```
 
-Step 3: clone this repo and checkout branch siri-microservices-project branch
+Step 3: clone this repo and checkout branch `siri-microservices-project branch`
 
-Step 4: cd cloud-developer/course-03/exercises/udacity-c3-deployment/docker
+Step 4: `cd cloud-developer/course-03/exercises/udacity-c3-deployment/docker`
 
-Step 5: docker-compose up
+Step 5: `docker-compose up`
 
 Step 6: You will have a front-end server running at http://localhost:8100 which is accessing the feed as well as the user services which are also running in their own containers
 
