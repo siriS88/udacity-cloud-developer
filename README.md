@@ -10,16 +10,15 @@ Step 1: Pull the images above from dockerhub
 
 Step 2: Setup the following local environment variables. 
 I am using a AWS RDS postgres database and an AWS S3 bucket in the us-west-2 region.
-`
-export POSTGRESS_USERNAME=udagramssingamnenidev
-export POSTGRESS_PASSWORD=udagramssingamnenidev
-export POSTGRESS_DB=udagramssingamnenidev
-export POSTGRESS_HOST=udagramssingamnenidev.cuf4lvy9x9ds.us-west-2.rds.amazonaws.com
-export AWS_BUCKET=udagram-ssingamneni-dev2
-export AWS_PROFILE=default
-export AWS_REGION=us-west-2
-export JWT_SECRET=helloworld
-export URL=http://localhost:8080
+`export POSTGRESS_USERNAME
+export POSTGRESS_PASSWORD
+export POSTGRESS_DB
+export POSTGRESS_HOST
+export AWS_BUCKET
+export AWS_PROFILE
+export AWS_REGION
+export JWT_SECRET
+export URL
 `
 
 Step 3: clone this repo and checkout branch siri-microservices-project branch
