@@ -9,7 +9,6 @@ https://hub.docker.com/r/ssingamneni/udagram-restapi-feed
 Step 1: Pull the images above from dockerhub
 
 Step 2: Setup the following local environment variables. 
-I am using a AWS RDS postgres database and an AWS S3 bucket in the us-west-2 region.
 
 ```
 export POSTGRESS_USERNAME
