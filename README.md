@@ -68,3 +68,25 @@ Step 9: Forward the fronend and backend ports
 `kubectl port-forward service/reverseproxy 8080:8080`
 
 Step 10: You should now be able to access the fronend at http://localhost:8100 which has access to feed and user services via the reverse proxy
+
+# Rolling upgrade to a new version
+
+Step 1: If you have new image to be deployed for a service, tag the image as `<image name>:v2 ` and update the appropriate deployment.yaml file with this image name
+
+Step 2: Re deploy
+`kubectl apply -f <deployment name>.yaml`
+
+`kubectl get rs` to see the old and the new replica sets. The old replica set is scaled down but remains just in case you want to roll back to the previous version
+
+`kubectl get pod` will show you that the pods for the deployment are restarted with the rolling upgrade
+
+# CI/CD 
+
+Travis CI is integrated with github and is used for continuous integration and deployment. Whenever a new commit is pushed, new images of feed, user, reverseproxy and front are created and they are deployed in a containerized app using docker-compose by creating a container for each image. 
+This setup is defined in `cloud-developer/course-03/exercises/udacity-c3-deployment/docker/docker-compose-build.yaml`
+
+Continouous deployment to kubernetes cluster is not enabled yet.
+
+# CloudWatch Monitoring
+
+The AWS CloudWatch EC2 dashboard seems to provide details of CPU utilization and Network details. If there was something else expected for this part, please provide a link to the setup of what's needed.
