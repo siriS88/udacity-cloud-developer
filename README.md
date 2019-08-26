@@ -44,7 +44,7 @@ I have a kubernetes cluster setup using kubeone (https://github.com/kubermatic/k
 
 I have deployed the user service, feed service, reverse proxy and frontend as separate microservices that are running on pod deployments in this cluster. Please follow the following steps to access the cluster and check it out.
 
-Step 1: Copy and paste the udagram-cluster-kubeconfig file I provided you with in to `cloud-developer/course-03/exercises/udacity-c3-deployment/k8s`
+Step 1: Copy and paste the `udagram-cluster-kubeconfig` file I provided you with in to `cloud-developer/course-03/exercises/udacity-c3-deployment/k8s`
 
 Step 2: `cd cloud-developer/course-03/exercises/udacity-c3-deployment/k8s/` and `export KUBECONFIG=$PWD/udagram-cluster-kubeconfig`
 
@@ -62,7 +62,6 @@ Step 6: `kubectl get deployment` and make sure backend-feed, backend-user, rever
 Step 7: `kubectl get pods` and make sure all pods are running
 
 Step 8: `kubectl get services` and make sure that backend-feed, backend-user, reverseproxy and frontend services exist
->>>>>>> Stashed changes
 
 Step 9: Forward the fronend and backend ports
 `kubectl port-forward service/frontend 8100:8100`
