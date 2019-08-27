@@ -1,8 +1,11 @@
 # Public docker images
 The following docker images are published to dockerhub: 
 https://hub.docker.com/r/ssingamneni/udagram-frontend
+
 https://hub.docker.com/r/ssingamneni/udagram-reverseproxy
+
 https://hub.docker.com/r/ssingamneni/udagram-restapi-user
+
 https://hub.docker.com/r/ssingamneni/udagram-restapi-feed
 
 # Basic setup
