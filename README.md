@@ -95,3 +95,5 @@ The AWS CloudWatch EC2 dashboard seems to provide details of CPU utilization and
 
 ![Kubernetes pods running](kubernetes_pods.png)
 ![Travis CI build](travisCI_build_pipeline.png)
+![Application Running](application_running_on_kubernetes.png)
+
