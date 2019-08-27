@@ -90,3 +90,7 @@ Continouous deployment to kubernetes cluster is not enabled yet.
 # CloudWatch Monitoring
 
 The AWS CloudWatch EC2 dashboard seems to provide details of CPU utilization and Network details. If there was something else expected for this part, please provide a link to the setup of what's needed.
+
+#Screenshots
+![Kubernetes pods running](./images/kubernetes_pods.png)
+![Travis CI build](./images/travisCI_build_pipeline.png)
