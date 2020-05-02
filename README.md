@@ -1,4 +1,4 @@
-# Intro
+# Introduction
 This project is developed as part of the udacity cloud developer nanodegree and uses code provided as part of this program.
 
 # Public docker images
