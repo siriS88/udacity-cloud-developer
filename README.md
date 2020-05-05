@@ -1,4 +1,4 @@
-# Introduction
+# Introduction and references
 This is the capstone project for the Udacity cloud developer nanodegree and forks code provided in Chapter 4 of the course.
 (Monolith to Microservices at Scale. Here is the GITHUB repo where it was forked from: https://github.com/scheeles/cloud-developer/tree/06-ci/course-03/exercises).
 
@@ -6,6 +6,12 @@ The app consists of 5 different microservices deployed on a kubernetes cluster. 
 
 The new addition in this project is the email service to enable app notifications. 
 When a user registers on the Udagram app, a verification email is sent to the user's email address. When a user adds a new post in Udagram UI, all users in the app that have verified their email addresses will receive a email notification. The email service uses Amazon SES to send notifications.
+
+The AWS docs served as good examples for verifying and sending emails using AWS SES. I specifically used examples from here: 
+https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SES.html#listIdentities-property
+https://docs.aws.amazon.com/ses/latest/DeveloperGuide/examples-send-using-sdk.html
+
+The kubernetes cluster was setup using kubeone: https://github.com/kubermatic/kubeone/blob/master/docs/quickstart-aws.md 
 
 # Notification functionality using screenshots
 1 Kubernetes pods running
@@ -118,4 +124,14 @@ This setup is defined in `cloud-developer/capstone/udacity-c3-deployment/docker/
 Continuous deployment to kubernetes cluster is not enabled because this would need storing KUBECONFIG, AWS, POSTGRESS and other credentials as environment variables in Travis CI which is public. I did not feel safe to expose those, let me know if there is an easier way to do this.
 
 
+# References
+kubeone:
+https://github.com/kubermatic/kubeone/blob/master/docs/quickstart-aws.md
 
+AWS SES:
+https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SES.html#listIdentities-property
+https://docs.aws.amazon.com/ses/latest/DeveloperGuide/examples-send-using-sdk.html
+
+user, feed, reverseproxy and frontend code:
+https://github.com/scheeles/cloud-developer/tree/06-ci/course-03/exercises
+https://github.com/scheeles/cloud-developer
