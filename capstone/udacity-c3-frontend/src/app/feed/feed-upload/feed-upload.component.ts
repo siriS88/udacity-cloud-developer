@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api/api.service';
-
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { FeedProviderService } from '../services/feed.provider.service';
 
@@ -18,6 +18,7 @@ export class FeedUploadComponent implements OnInit {
   uploadForm: FormGroup;
 
   constructor(
+    private auth: AuthService,
     private feed: FeedProviderService,
     private formBuilder: FormBuilder,
     private loadingController: LoadingController,
@@ -55,7 +56,7 @@ export class FeedUploadComponent implements OnInit {
     this.loadingController.create();
 
     if (!this.uploadForm.valid || !this.file) { return; }
-    this.feed.uploadFeedItem(this.uploadForm.controls.caption.value, this.file)
+    this.feed.uploadFeedItem(this.uploadForm.controls.caption.value, this.file, this.auth.currentUser$)
       .then((result) => {
         this.modalController.dismiss();
         this.loadingController.dismiss();
