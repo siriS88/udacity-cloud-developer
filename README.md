@@ -132,6 +132,6 @@ AWS SES:
 https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SES.html#listIdentities-property
 https://docs.aws.amazon.com/ses/latest/DeveloperGuide/examples-send-using-sdk.html
 
-user, feed, reverseproxy and frontend code:
+user, feed, reverseproxy, frontend, deployment code:
 https://github.com/scheeles/cloud-developer/tree/06-ci/course-03/exercises
 https://github.com/scheeles/cloud-developer
