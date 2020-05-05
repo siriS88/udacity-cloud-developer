@@ -1,106 +1,100 @@
 # Introduction
-This project is developed as part of the udacity cloud developer nanodegree and uses code provided as part of this program.
+This is the capstone project for the Udacity cloud developer nanodegree and forks code provided in Chapter 4 (Monoloith to Microservices at Scale).
+The app consists of 5 different microservices deployed on a kubernetes cluster. The frontend, reverseproxy, user and feed service already existed.
+
+The new addition in this project is the email service to enable app notifications. 
+When a user registers on the Udagram app, a verification email is sent to the user's email address. When a user adds a new post in Udagram UI, all users in the app that have verified their email addresses will receive a email notification. The email service uses Amazon SES to send notifications.
+
+# Notification functionality using screenshots
+
+![1 Kubernetes pods running](1_kubernetes_pods.png)
+![2 Kubernetes services running](2_kubernetes_services.png)
+![3 App running on kubernetes and verify call when a new user registers](3_RegisteringANewUser.png)
+![4 Verify email received](4_VerifyEmailOnRegister.png)
+![5 Another user logs in and adds a new post](6_AddingANewPost.png)
+![6 Call to email service](7_EmailServicePost.png)
+![7 Email notification received by all users with verified emails](8_NotificationEmailReceived.png)
+
 
 # Public docker images
 The following docker images are published to dockerhub: 
 
-https://hub.docker.com/r/ssingamneni/udagram-frontend
+https://hub.docker.com/repository/docker/ssingamneni/udagram-frontend
 
-https://hub.docker.com/r/ssingamneni/udagram-reverseproxy
+https://hub.docker.com/repository/docker/ssingamneni/udagram-reverseproxy
 
-https://hub.docker.com/r/ssingamneni/udagram-restapi-user
+https://hub.docker.com/repository/docker/ssingamneni/udagram-restapi-user
 
-https://hub.docker.com/r/ssingamneni/udagram-restapi-feed
+https://hub.docker.com/repository/docker/ssingamneni/udagram-restapi-feed
 
-# Basic setup
+https://hub.docker.com/repository/docker/ssingamneni/udagram-restapi-email
 
-Note: You will need a AWS bucket, RDS instance and your AWS credentials handy.
+# Running the application
 
-Export the following variables in your `~/.profile`
-
-```
-export POSTGRESS_USERNAME
-export POSTGRESS_PASSWORD
-export POSTGRESS_DB
-export POSTGRESS_HOST
-export AWS_BUCKET
-export AWS_PROFILE
-export AWS_REGION
-export JWT_SECRET
-export URL
-
-```
-
-`source ~/.profile`
+Note: This app needs KUBECONFIG, AWS SES, AWS bucket, RDS instance and AWS credentials.
 
 # Starting the app as a container on a local system using docker
 Step 1: Pull the images above from dockerhub
 
-Step 2: Clone this repo and checkout branch siri-microservices-project branch
+Step 2: Clone this repo and checkout branch master
 
-Step 3: cd cloud-developer/course-03/exercises/udacity-c3-deployment/docker
+Step 3: cd cloud-developer/capstone/udacity-c3-deployment/docker
 
 Step 4: docker-compose up
 
-Step 5: You will have a front-end server running at http://localhost:8100 which is accessing the feed as well as the user services which are also running in their own containers
+Step 5: You will have a front-end server running at http://localhost:8100 which is accessing the feed, user and email services which are also running in their own containers
 
 
-# Starting the app in a kubernetes cluster
+# Starting the app in a kubernetes cluster and fowarding to local ports
 
 I have a kubernetes cluster setup using kubeone (https://github.com/kubermatic/kubeone/blob/master/docs/quickstart-aws.md) on AWS. The cluster has 3 master nodes and 3 worker nodes.
 
-I have deployed the user service, feed service, reverse proxy and frontend as separate microservices that are running on pod deployments in this cluster. Please follow the following steps to access the cluster and check it out.
+I have deployed the user, feed, email, reverse proxy, frontend services as separate microservices that are running on pod deployments in this cluster. These are the steps I followed to setup the kubernetes deployment using this kubeone cluster.
 
-Step 1: Copy and paste the `udagram-cluster-kubeconfig` file I provided you with in to `cloud-developer/course-03/exercises/udacity-c3-deployment/k8s`
+Step 1: Copy and paste the `udagram-cluster-kubeconfig` file I provided you with in to `cloud-developer/capstone/udacity-c3-deployment/k8s`
 
-Step 2: `cd cloud-developer/course-03/exercises/udacity-c3-deployment/k8s/` and `export KUBECONFIG=$PWD/udagram-cluster-kubeconfig`
+Step 2: `cd cloud-developer/capstone/udacity-c3-deployment/k8s/` and `export KUBECONFIG=$PWD/udagram-cluster-kubeconfig`
 
-Step 3: Set POSTGRESS_USERNAME and POSTGRESS_PASSWORD in `cloud-developer/course-03/exercises/udacity-c3-deployment/k8s/env-secret.yaml` as base64 encoded strings
+Step 3: Set POSTGRESS_USERNAME and POSTGRESS_PASSWORD in `cloud-developer/capstone/udacity-c3-deployment/k8s/env-secret.yaml` as base64 encoded strings
 
-Step 4: Set aws creds file in `cloud-developer/course-03/exercises/udacity-c3-deployment/k8s/aws-secret.yaml` as base64 encoded
+Step 4: Set aws creds file in `cloud-developer/capstone/udacity-c3-deployment/k8s/aws-secret.yaml` as base64 encoded
 
 Step 5: Add the ConfigMaps and Secrets, delete existing ones if any
 `kubectl apply env-configmap.yaml`
 `kubectl apply -f env-secret.yaml`
 `kubectl apply -f aws-secret.yaml`
 
-Step 6: `kubectl get deployment` and make sure backend-feed, backend-user, reverseproxy and frontend exist and are available
+Step 6: Create the kubernetes deployments => pods as well as services
+`kubectl apply -f backend-feed-deployment.yaml`
+`kubectl apply -f backend-user-deployment.yaml`
+`kubectl apply -f backend-email-deployment.yaml`
+`kubectl apply -f frontend-deployment.yaml`
+`kubectl apply -f reverseproxy-deployment.yaml`
 
-Step 7: `kubectl get pods` and make sure all pods are running
+`kubectl apply -f frontend-service.yaml`
+`kubectl apply -f backend-user-service.yaml`
+`kubectl apply -f backend-feed-service.yaml`
+`kubectl apply -f backend-email-service.yaml`
+`kubectl apply -f reverseproxy-service.yaml` 
 
-Step 8: `kubectl get services` and make sure that backend-feed, backend-user, reverseproxy and frontend services exist
+Step 7: `kubectl get deployment` and make sure backend-feed, backend-user, reverseproxy and frontend exist and are available
 
-Step 9: Forward the fronend and backend ports
+Step 8: `kubectl get pods` and make sure all pods are running
+
+Step 9: `kubectl get services` and make sure that backend-feed, backend-user, reverseproxy and frontend services exist
+
+Step 10: Forward the fronend and backend ports
 `kubectl port-forward service/frontend 8100:8100`
 `kubectl port-forward service/reverseproxy 8080:8080`
 
-Step 10: You should now be able to access the fronend at http://localhost:8100 which has access to feed and user services via the reverse proxy
-
-# Rolling upgrade to a new version
-
-Step 1: If you have new image to be deployed for a service, tag the image as `<image name>:v2 ` and update the appropriate deployment.yaml file with this image name
-
-Step 2: Re deploy
-`kubectl apply -f <deployment name>.yaml`
-
-`kubectl get rs` to see the old and the new replica sets. The old replica set is scaled down but remains just in case you want to roll back to the previous version
-
-`kubectl get pod` will show you that the pods for the deployment are restarted with the rolling upgrade
+Step 10: I access the fronend at http://localhost:8100 which has access to feed, user and email services via the reverse proxy as you can see in screenshots above.
 
 # CI/CD 
 
 Travis CI is integrated with github and is used for continuous integration and deployment. Whenever a new commit is pushed, new images of feed, user, reverseproxy and front are created and they are deployed in a containerized app using docker-compose by creating a container for each image. 
-This setup is defined in `cloud-developer/course-03/exercises/udacity-c3-deployment/docker/docker-compose-build.yaml`
+This setup is defined in `cloud-developer/capstone/udacity-c3-deployment/docker/docker-compose-build.yaml`
 
-Continouous deployment to kubernetes cluster is not enabled yet.
+Continuous deployment to kubernetes cluster is not enabled because this would need storing KUBECONFIG, AWS, POSTGRESS and other credentials as environment variables in Travis CI which is public. I did not feel safe to expose those, let me know if there is an easier way to do this.
 
-# CloudWatch Monitoring
 
-The AWS CloudWatch EC2 dashboard seems to provide details of CPU utilization and Network details. If there was something else expected for this part, please provide a link to the setup of what's needed.
-
-# Screenshots
-
-![Kubernetes pods running](kubernetes_pods.png)
-![Travis CI build](travisCI_build_pipeline.png)
-![Application Running](application_running_on_kubernetes.png)
 

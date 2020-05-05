@@ -12,6 +12,11 @@ services:
     build:
       context: ../../udacity-c3-restapi-feed  
     image: ssingamneni/udagram-restapi-feed:prod
+
+  backend_feed:
+    build:
+      context: ../../udacity-c3-restapi-email 
+    image: ssingamneni/udagram-restapi-email:prod
   frontend:
     build:
       context: ../../udacity-c3-frontend  
