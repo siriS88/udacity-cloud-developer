@@ -19,3 +19,4 @@ before_install:
 
 install:
   - docker-compose -f capstone/udacity-c3-deployment/docker/docker-compose-build.yaml build --parallel 
+  - kubectl get pods -o wide

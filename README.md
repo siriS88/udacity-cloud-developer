@@ -6,15 +6,33 @@ The new addition in this project is the email service to enable app notification
 When a user registers on the Udagram app, a verification email is sent to the user's email address. When a user adds a new post in Udagram UI, all users in the app that have verified their email addresses will receive a email notification. The email service uses Amazon SES to send notifications.
 
 # Notification functionality using screenshots
-
+1 Kubernetes pods running
 ![1 Kubernetes pods running](1_kubernetes_pods.png)
+
+2 Kubernetes services running
 ![2 Kubernetes services running](2_kubernetes_services.png)
+
+3 App running on kubernetes and verify call when a new user registers
 ![3 App running on kubernetes and verify call when a new user registers](3_RegisteringANewUser.png)
+
+4 Call to email service to verify email on register
 ![4 Call to email service to verify email on register](4_VerifyEmailOnRegister.png)
-![4 Verification email received by user](5_Verification_email_received.png)
-![5 Another user logs in and adds a new post](6_AddingANewPost.png)
-![6 Call to email service to send notification emails](7_EmailServicePost.png)
-![7 Email notification received by all users with verified emails](8_NotificationEmailReceived.png)
+
+5 Verification email received by user
+![5 Verification email received by user](5_Verification_email_received.png)
+
+6 Another user logs in and adds a new post
+![6 Another user logs in and adds a new post](6_AddingANewPost.png)
+
+7 Call to email service to send notification emails
+![7 Call to email service to send notification emails](7_EmailServicePost.png)
+
+8 Email notification received by all users with verified emails
+![8 Email notification received by all users with verified emails](8_NotificationEmailReceived.png)
+
+Travis CI pipelines
+![Travis CI build on commit running](TravisCI_1.png)
+![Travis CI build on commit success](TravisCI_2.png)
 
 
 # Public docker images
