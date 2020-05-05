@@ -10,9 +10,10 @@ When a user registers on the Udagram app, a verification email is sent to the us
 ![1 Kubernetes pods running](1_kubernetes_pods.png)
 ![2 Kubernetes services running](2_kubernetes_services.png)
 ![3 App running on kubernetes and verify call when a new user registers](3_RegisteringANewUser.png)
-![4 Verify email received](4_VerifyEmailOnRegister.png)
+![4 Call to email service to verify email on register](4_VerifyEmailOnRegister.png)
+![4 Verification email received by user](5_Verification_email_received.png)
 ![5 Another user logs in and adds a new post](6_AddingANewPost.png)
-![6 Call to email service](7_EmailServicePost.png)
+![6 Call to email service to send notification emails](7_EmailServicePost.png)
 ![7 Email notification received by all users with verified emails](8_NotificationEmailReceived.png)
 
 
