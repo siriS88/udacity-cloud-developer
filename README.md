@@ -1,6 +1,8 @@
 # Introduction
-This is the capstone project for the Udacity cloud developer nanodegree and forks code provided in Chapter 4 (Monoloith to Microservices at Scale).
-The app consists of 5 different microservices deployed on a kubernetes cluster. The frontend, reverseproxy, user and feed service already existed.
+This is the capstone project for the Udacity cloud developer nanodegree and forks code provided in Chapter 4 of the course.
+(Monolith to Microservices at Scale. Here is the GITHUB repo where it was forked from: https://github.com/scheeles/cloud-developer/tree/06-ci/course-03/exercises).
+
+The app consists of 5 different microservices deployed on a kubernetes cluster. The frontend, reverseproxy, user and feed service already existed in https://github.com/scheeles/cloud-developer/tree/06-ci/course-03/exercises.
 
 The new addition in this project is the email service to enable app notifications. 
 When a user registers on the Udagram app, a verification email is sent to the user's email address. When a user adds a new post in Udagram UI, all users in the app that have verified their email addresses will receive a email notification. The email service uses Amazon SES to send notifications.
